@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'meus_dados.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,24 +15,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Projeto QI",
+        title: "Quadro de horários",
         theme: ThemeData(primarySwatch: Colors.red),
-        home: const Projeto());
+        home: const MyDados());
   }
 }
 
-class Projeto extends StatefulWidget {
-  const Projeto({Key? key}) : super(key: key);
+class Quadro extends StatefulWidget {
+  const Quadro({Key? key}) : super(key: key);
 
   @override
-  State<Projeto> createState() => _ProjetoState();
+  State<Quadro> createState() => _QuadroState();
 }
 
-class _ProjetoState extends State<Projeto> {
+class _QuadroState extends State<Quadro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 70,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(243, 0, 0, 1),
         title: Row(
@@ -38,7 +46,7 @@ class _ProjetoState extends State<Projeto> {
           children: [
             Image.asset(
               "lib/img/logo_qi.png",
-              scale: 3,
+              scale: 2,
             ),
           ],
         ),
@@ -58,10 +66,10 @@ class _ProjetoState extends State<Projeto> {
                 child: Table(
                   children: [
                     TableRow(children: [
-                      Text("Quadro de horários",
+                      Text("Quadro de horários - Desenvolvimento de app I",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 21,
                               fontWeight: FontWeight.bold,
                               color: Colors.white))
                     ]),
@@ -447,6 +455,12 @@ class _ProjetoState extends State<Projeto> {
                 ),
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => MyDados()));
+                },
+                child: Text("Quadro de horarios"))
           ],
         ),
       ),
